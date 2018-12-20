@@ -50,6 +50,45 @@
                     </div>
                 </div>
                 <div id="@mission.Id-panel" class="panel-body collapse">
+                    <!--templates-->
+                    <div class="mission-template-container panel panel-default">
+                        <div class="panel-heading">
+                            <div class="btn-group">
+                                <a role="button" data-toggle="collapse" href="#@mission.Id-templates" aria-expanded="false">
+                                    <h3 class="panel-title">Templates</h3>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="@mission.Id-templates" class="panel-body collapse">
+                            <label for="@mission.Id-template-search">Search templates</label>
+                            <input id="@mission.Id-template-search" type="search" class="template-search form-control" />
+                            <ol class="templates">
+                                <li class="template">
+                                    <h1 class="template-header">Test name</h1>
+                                    <button type="button" class="btn btn-info">Use</button> <button type="button" class="btn btn-danger">Delete</button>
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Parameter</th>
+                                                <th>Value</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Something</td>
+                                                <td>123</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Something2</td>
+                                                <td>123123</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <!--end templates-->
                     @if (!string.IsNullOrWhiteSpace(mission.Description))
                     {
                         <p>@mission.Description</p>
@@ -65,7 +104,10 @@
                         @foreach (var parameter in mission.MethodInfo.GetParameters())
                         {
                             var control = ControlFactory.CreateControl(parameter);
-                            if (control is NullControl) { continue; }
+                            if (control is NullControl)
+                            {
+                                continue;
+                            }
 
                             <div class="form-group">
                                 @Html.RenderPartial(control)

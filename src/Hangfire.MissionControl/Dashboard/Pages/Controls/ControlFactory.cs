@@ -42,7 +42,7 @@ namespace Hangfire.MissionControl.Dashboard.Pages.Controls
 
                 case var _ when parameterType == typeof(PerformContext):
                 case var _ when parameterType == typeof(IJobCancellationToken):
-                    return new NullControl();
+                    return new NullControl(); 
 
                 default:
                     return new UnsupportedControl(parameter);

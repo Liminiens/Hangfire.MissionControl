@@ -43,3 +43,31 @@ $(".datetimepicker").each(function () {
         format: "YYYY-MM-DD HH:mm"
     });
 });
+
+//https://jquery-howto.blogspot.com/2009/06/jquery-custom-selectors-with-parameters.html
+jQuery.expr[':'].icontains = function (a, i, m) {
+    return jQuery(a).text().toLowerCase()
+        .indexOf(m[3].toLowerCase()) >= 0;
+};
+
+$(".template-search").each(function () {
+    var searchInput = this;
+    var jqSearchInput = $(this);
+    var parentDiv = jqSearchInput.parent();
+    var templateLis = parentDiv.find('li');
+    jqSearchInput.keyup(function () {
+        if (searchInput.value === '') {
+            templateLis.removeClass('hidden');
+        } else {
+            templateLis.each(function () {
+                var li = $(this);
+                var h1 = li.find('h1:icontains(' + searchInput.value + ')');
+                if (!h1.length) {
+                    li.addClass('hidden');
+                } else if (li.hasClass('hidden')) {
+                    li.removeClass('hidden');
+                }
+            });
+        }
+    });
+});

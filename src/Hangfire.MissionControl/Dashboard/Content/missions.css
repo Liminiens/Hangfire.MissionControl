@@ -19,3 +19,25 @@
     background-color: #e7e7e7;
     border-color: #e7e7e7;
 }
+
+.mission-template-container {
+    margin-bottom: 15px;
+}
+
+    .mission-template-container .template-search {
+        margin-bottom: 25px;
+    }
+
+/*templates*/
+.templates {
+    margin-left: inherit;
+    padding-left: inherit;
+}
+
+    .templates:not(:last-of-type) {
+        margin-bottom: 15px;
+    }
+
+.template .template-header {
+    font-size: 18px;
+}
